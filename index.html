@@ -4,8 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
+    <!--CSS Styling-->
+    <style>
+        /* CSS Styling for meme generator */
+    </style>
 </head>
 <body>
-    
+    <div id="meme-container">
+        <input type="file" id="image-upload" accept="image/*">
+        <input type="text" id="text-input" placeholder="Add text">
+        <button id="add=text-button">Add Text</button>
+        <button id="download-button">Download Meme</button>
+        <canvas id="meme-canvas"></canvas>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.7.0/fabric.min.js"></script>
+    <script>
+        const canvas = new fabric.Canvas("meme-canvas");
+        // add js logic for image/txt manipulation
+    </script>
 </body>
 </html>
