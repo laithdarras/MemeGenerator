@@ -21,7 +21,48 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.7.0/fabric.min.js"></script>
     <script>
         const canvas = new fabric.Canvas("meme-canvas");
-        // add js logic for image/txt manipulation
+        const imageUpload = document.getElementById("image-upload");
+
+        imageUpload.addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = new Image();
+                    img.src = e.target.result;
+
+                    // adding image to canvas
+                    canvas.setBackgroundImage(img.src, canvas.renderAll.bind(canvas));
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function addText() {
+            const text = new fabric.Text("Your text here ", {
+                left: 100,
+                top: 100,
+                fontFamily: "Calibri",
+                fontSize: 24,
+                fill: "white",
+            });
+            canvas.add(text);
+        }
+
+        const downloadButton = document.getElementById("download-button");
+
+        downloadButton.addEventListener("click", () => {
+            // converting the canvas to a data URL (image)
+            const dataURL = canvas.toDataURL({ format: "png" });
+            // creating a link for downloading
+            const downloadLink = document.createElement("a");
+            downloadLink.href = dataURL;
+            downloadLink.download = "meme.png";
+            // trigger the download
+            downloadLink.click();
+        })
+
+
     </script>
 </body>
 </html>
